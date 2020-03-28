@@ -16,6 +16,8 @@ import LiveHelpOutlined from '@material-ui/icons/LiveHelpOutlined';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import NotificationsNoneOutlined from '@material-ui/icons/NotificationsNoneOutlined';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import {useSelector, useDispatch} from "react-redux";
+import { displaySideBar,removeSideBar } from '../actions'
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -121,90 +123,92 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Header() {
-  const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const classes = useStyles();
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const store = useSelector(state => state.side);
+    let dispatch = useDispatch();
+    let action = store ? removeSideBar : displaySideBar ;
+    const isMenuOpen = Boolean(anchorEl);
+    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    const handleProfileMenuOpen = event => {
+      setAnchorEl(event.currentTarget);
+    };
 
-  const handleProfileMenuOpen = event => {
-    setAnchorEl(event.currentTarget);
-  };
+    const handleMobileMenuClose = () => {
+      setMobileMoreAnchorEl(null);
+    };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
+    const handleMenuClose = () => {
+      setAnchorEl(null);
+      handleMobileMenuClose();
+    };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
+    const handleMobileMenuOpen = event => {
+      setMobileMoreAnchorEl(event.currentTarget);
+    };
 
-  const handleMobileMenuOpen = event => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
+    const menuId = 'primary-search-account-menu';
+    const renderMenu = (
+      <Menu
+        anchorEl={anchorEl}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        id={menuId}
+        keepMounted
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        open={isMenuOpen}
+        onClose={handleMenuClose}
+      >
+        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      </Menu>
+    );
 
-  const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
-
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-            <MailIcon />        
-        </IconButton>
-        <p>SUPPORT</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-            <LiveHelpOutlined />        
-        </IconButton>
-        <p>FAQ</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 8 new notifications" color="inherit">
-          <Badge badgeContent={8} color="primary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>NOTIFICATION</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p> Hello Oluwaleke Ojo</p>
-      </MenuItem>
-    </Menu>
-  );
+    const mobileMenuId = 'primary-search-account-menu-mobile';
+    const renderMobileMenu = (
+      <Menu
+        anchorEl={mobileMoreAnchorEl}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        id={mobileMenuId}
+        keepMounted
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        open={isMobileMenuOpen}
+        onClose={handleMobileMenuClose}
+      >
+        <MenuItem>
+          <IconButton aria-label="show 4 new mails" color="inherit">
+              <MailIcon />        
+          </IconButton>
+          <p>SUPPORT</p>
+        </MenuItem>
+        <MenuItem>
+          <IconButton aria-label="show 11 new notifications" color="inherit">
+              <LiveHelpOutlined />        
+          </IconButton>
+          <p>FAQ</p>
+        </MenuItem>
+        <MenuItem>
+          <IconButton aria-label="show 8 new notifications" color="inherit">
+            <Badge badgeContent={8} color="primary">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+          <p>NOTIFICATION</p>
+        </MenuItem>
+        <MenuItem onClick={handleProfileMenuOpen}>
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="primary-search-account-menu"
+            aria-haspopup="true"
+            color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
+          <p> Hello Oluwaleke Ojo</p>
+        </MenuItem>
+      </Menu>
+    );
 
   return (
     <div className={classes.grow}>
@@ -215,6 +219,7 @@ export default function Header() {
                 className={classes.menuButton}
                 color="primary"
                 aria-label="open drawer"
+                onClick={() => dispatch(action())}
             >
                 <MenuIcon />
             </IconButton>        

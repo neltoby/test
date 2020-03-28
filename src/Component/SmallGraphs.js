@@ -12,14 +12,15 @@ import {useSelector, useDispatch} from "react-redux";
 const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
-        width: '24%',
-        padding: '0.5rem 0 0 0 !important',
-        margin: '0 1% 0 0',
-        flexWrap: 'nowrap',
-        borderRadius: '0',
-        [theme.breakpoints.down('md')]: {
-            width: '48%',
-            marginBottom: '1%',
+        width: '48%',
+        margin: '0 1% 1% 0',
+        marginBottom: '1%',
+        [theme.breakpoints.up('md')]: {
+            width: '24%',
+            padding: '0.5rem 0 0 0 !important',
+            margin: '0 1% 0 0',
+            flexWrap: 'nowrap',
+            borderRadius: '0',
         },
     },
     details: {
@@ -58,7 +59,6 @@ const SmallGraphs = (props) => {
     const theme = useTheme();
     const store = useSelector(state => state);
     const smallData = store.currentData.alldata.smallData;
-    console.log(store)
     return (
         <Card className={classes.root}>
             <div className={classes.details}>

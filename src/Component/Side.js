@@ -67,6 +67,15 @@ const useStyles = makeStyles(theme => ({
             backgroundColor: '##ccd9ff',
             borderLeft: '3px solid #0040ff',
         }
+    },
+    mobile: {
+        width: '60%',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        height: '100vh',
+        overflowY: 'scroll',
+        backgroundColor: '#fff',
     }
 }))
 
@@ -83,119 +92,129 @@ const Side = (props) => {
 		{text: 'Reconcilled Orders', 'icon': <IoMdPaper />}];
     const profile = [{text: 'Merchant Profile', 'icon': <FaRegUser/>}];
     let size = props.overlay ? '1em' : '2em';
+    const content = (
+        <>
+        <div className={classes.but}>
+            <Button 
+                fullWidth={true} 
+                className={classes.invoice}
+            >
+                GENERATE INVOICE
+            </Button>
+        </div>
+
+        <IconContext.Provider value={{ className: 'ul-icon', size: size, color: '#004d4d' }}>
+        <List dense={dense}>
+            {items.map((item,i) => {
+                if(item.icon){
+                    return (
+                        <>
+                        <ListItem button key={i} className={classes.hover}>
+                            <ListItemIcon>
+                                {item.icon}
+                            </ListItemIcon>
+                            <ListItemText primary={item.text} />
+                        </ListItem>
+                        </>
+                    )
+                }else{
+                    return (
+                        <ListItem button className={classes.noHover}>
+                            <ListItemText primary={item.text} />
+                        </ListItem>
+                    )
+                }
+            })}
+        </List>
+        <List dense={dense}>
+            {payments.map((item,i) => {
+                if(item.icon){
+                    return (
+                        <>
+                        <ListItem button key={i} className={classes.hover}>
+                            <ListItemIcon>
+                                {item.icon}
+                            </ListItemIcon>
+                            <ListItemText primary={item.text} />
+                        </ListItem>
+                        </>
+                    )
+                }else{
+                    return (
+                        <ListItem button className={classes.noHover}>
+                            <ListItemText primary={item.text} />
+                        </ListItem>
+                    )
+                }
+            })}
+        </List>
+        <List dense={dense}>
+            {orders.map((item,i) => {
+                if(item.icon){
+                    return (
+                        <>
+                        <ListItem button key={i} className={classes.hover}>
+                            <ListItemIcon>
+                                {item.icon}
+                            </ListItemIcon>
+                            <ListItemText primary={item.text} />
+                        </ListItem>
+                        </>
+                    )
+                }else{
+                    return (
+                        <ListItem button className={classes.noHover}>
+                            <ListItemText primary={item.text} />
+                        </ListItem>
+                    )
+                }
+            })}
+        </List>
+        <List dense={dense}>
+            {profile.map((item,i) => {
+                if(item.icon){
+                    return (
+                        <>
+                        <ListItem button key={i} className={classes.hover}>
+                            <ListItemIcon>
+                                {item.icon}
+                            </ListItemIcon>
+                            <ListItemText primary={item.text} />
+                        </ListItem>
+                        </>
+                    )
+                }else{
+                    return (
+                        <ListItem button className={classes.noHover}>
+                            <ListItemText primary={item.text} />
+                        </ListItem>
+                    )
+                }
+            })}
+        </List>
+        </IconContext.Provider>
+        </>
+    )
+    const mobile = <div className={classes.mobile}>{content}</div>;
+    const desktop = (
+        <Grid item md={3} className={classes.root}>
+            <div className={classes.container} >
+                <Box
+                    boxShadow={2}
+                    bgcolor="background.paper"
+                    m={1}
+                    p={1}
+                    style={{ width: '100%', height: '100%' }}
+                >
+                {content}
+                </Box>
+            </div>
+        </Grid>
+    )
+    const container = props.overlay ? mobile : desktop ;
     return (
         <>
-            <Grid item md={3} className={classes.root}>
-                <div className={classes.container} >
-                    <Box
-                        boxShadow={2}
-                        bgcolor="background.paper"
-                        m={1}
-                        p={1}
-                        style={{ width: '100%', height: '100%' }}
-                    >
-                        <div className={classes.but}>
-                            <Button 
-                                fullWidth={true} 
-                                className={classes.invoice}
-                            >
-                                GENERATE INVOICE
-                            </Button>
-                        </div>
-                
-                        <IconContext.Provider value={{ className: 'ul-icon', size: size, color: '#004d4d' }}>
-                        <List dense={dense}>
-                            {items.map((item,i) => {
-                                if(item.icon){
-                                    return (
-                                        <>
-                                        <ListItem button key={i} className={classes.hover}>
-                                            <ListItemIcon>
-                                                {item.icon}
-                                            </ListItemIcon>
-                                            <ListItemText primary={item.text} />
-                                        </ListItem>
-                                        </>
-                                    )
-                                }else{
-                                    return (
-                                        <ListItem button className={classes.noHover}>
-                                            <ListItemText primary={item.text} />
-                                        </ListItem>
-                                    )
-                                }
-                            })}
-                        </List>
-                        <List dense={dense}>
-                            {payments.map((item,i) => {
-                                if(item.icon){
-                                    return (
-                                        <>
-                                        <ListItem button key={i} className={classes.hover}>
-                                            <ListItemIcon>
-                                                {item.icon}
-                                            </ListItemIcon>
-                                            <ListItemText primary={item.text} />
-                                        </ListItem>
-                                        </>
-                                    )
-                                }else{
-                                    return (
-                                        <ListItem button className={classes.noHover}>
-                                            <ListItemText primary={item.text} />
-                                        </ListItem>
-                                    )
-                                }
-                            })}
-                        </List>
-                        <List dense={dense}>
-                            {orders.map((item,i) => {
-                                if(item.icon){
-                                    return (
-                                        <>
-                                        <ListItem button key={i} className={classes.hover}>
-                                            <ListItemIcon>
-                                                {item.icon}
-                                            </ListItemIcon>
-                                            <ListItemText primary={item.text} />
-                                        </ListItem>
-                                        </>
-                                    )
-                                }else{
-                                    return (
-                                        <ListItem button className={classes.noHover}>
-                                            <ListItemText primary={item.text} />
-                                        </ListItem>
-                                    )
-                                }
-                            })}
-                        </List>
-                        <List dense={dense}>
-                            {profile.map((item,i) => {
-                                if(item.icon){
-                                    return (
-                                        <>
-                                        <ListItem button key={i} className={classes.hover}>
-                                            <ListItemIcon>
-                                                {item.icon}
-                                            </ListItemIcon>
-                                            <ListItemText primary={item.text} />
-                                        </ListItem>
-                                        </>
-                                    )
-                                }else{
-                                    return (
-                                        <ListItem button className={classes.noHover}>
-                                            <ListItemText primary={item.text} />
-                                        </ListItem>
-                                    )
-                                }
-                            })}
-                        </List>
-                        </IconContext.Provider>
-                    </Box>
-                </div>    
-            </Grid>
+            {container}
             
         </>
     );

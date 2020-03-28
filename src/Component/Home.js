@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import Header from './Header'
 import Side from './Side'
 import Main from './Main'
+import Footer from './Footer'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -21,6 +22,7 @@ const Home = () => {
                 <Side />
                 <Main />
             </Grid>
+            <Footer />
             
         </div>
     );

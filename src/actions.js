@@ -10,6 +10,8 @@ export const DECREASE = 'DECREASE';
 export const NEXT = 'NEXT';
 export const PREVIOUS = 'PREVIOUS';
 export const GOTO = 'GOTO';
+export const LOAD = 'LOAD';
+export const STOPLOAD = 'STOPLOAD';
 export const allData = () => {
 	return {type: ALL}
 }
@@ -45,4 +47,10 @@ export const prev = () => {
 }
 export const goto = (num) => {
 	return {type: GOTO, payload: num}
+}
+export const loading = (payload) => {
+	return {type: LOAD, payload: payload}
+}
+export const stop = () => {
+	return {type: STOPLOAD}
 }

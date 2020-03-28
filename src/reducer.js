@@ -1,8 +1,9 @@
 import {seed} from './Seed'
 import {allData} from './GraphData'
-import produce from 'immer'
+import produce from 'immer';
 import {
-	ALL, RECONCILLED, UNRECONCILLED, PENDING, SETTLED,DISPLAY,REMOVE,INCREASE,DECREASE,GOTO,PREVIOUS,NEXT
+	ALL, RECONCILLED, UNRECONCILLED, PENDING, SETTLED,DISPLAY,
+	REMOVE,INCREASE, DECREASE,GOTO, PREVIOUS, NEXT, LOAD, STOPLOAD,
 } from './actions'
 import isJson  from './isJson'
 
@@ -16,7 +17,9 @@ const initialState = {
 	count: 1,
 	category: seed.slice(0,10),
 	catCount: seed.length,
-	side: false
+	side: false,
+	loading: false,
+	component: '',
 }
 export default function reducer ( state = initialState, action) {
 	switch (action.type){
@@ -40,7 +43,7 @@ export default function reducer ( state = initialState, action) {
 		case RECONCILLED:{
 			return produce(state, draft => {
 				let recon = state.all.filter((item) => {
-					if(item.status == 'Reconcilled'){
+					if(item.status === 'Reconcilled'){
 						return item
 					}
 				});
@@ -55,7 +58,7 @@ export default function reducer ( state = initialState, action) {
 		case UNRECONCILLED:{
 			return produce(state, draft => {
 				let unrec = state.all.filter((item) => {
-					if(item.status == 'Un-reconcilled'){
+					if(item.status === 'Un-reconcilled'){
 						return item
 					}
 				});
@@ -70,7 +73,7 @@ export default function reducer ( state = initialState, action) {
 		case PENDING:{
 			return produce(state, draft => {
 				let pend = state.all.filter((item) => {
-					if(item.status == 'Pending'){
+					if(item.status === 'Pending'){
 						return item
 					}
 				});
@@ -85,7 +88,7 @@ export default function reducer ( state = initialState, action) {
 		case SETTLED:{
 			return produce(state, draft => {
 				let set = state.all.filter((item) => {
-					if(item.status == 'Settled'){
+					if(item.status === 'Settled'){
 						return item
 					}
 				});
@@ -109,7 +112,7 @@ export default function reducer ( state = initialState, action) {
 		}
 		case DECREASE:{
 			return produce(state, draft => {
-				let len = state.allData.length;
+				// let len = state.allData.length;
 				let newNum = state.defaultNum - 1;
 				let finNum = newNum < 0 ? 3 : newNum ;
 				draft.defaultNum = finNum;
@@ -118,7 +121,7 @@ export default function reducer ( state = initialState, action) {
 		}
 		case INCREASE:{
 			return produce(state, draft => {
-				let len = state.allData.length;
+				// let len = state.allData.length;
 				let newNum = state.defaultNum + 1;
 				let finNum = newNum > 3 ? 0 : newNum ;
 				draft.defaultNum = finNum;
@@ -127,10 +130,10 @@ export default function reducer ( state = initialState, action) {
 		}
 		case NEXT:{
 			return produce(state, draft => {
-				let status = state.current == RECONCILLED ? 'Reconcilled' : state.current == UNRECONCILLED ? 'Un-reconcilled' :
-					state.current == PENDING ? 'Pending' : state.current == SETTLED ? 'Settled' : 'All'
-				let allCat = state.current == ALL ? state.all : state.all.filter((item) => {
-					if(item.status == status){
+				let status = state.current === RECONCILLED ? 'Reconcilled' : state.current === UNRECONCILLED ? 'Un-reconcilled' :
+					state.current === PENDING ? 'Pending' : state.current === SETTLED ? 'Settled' : 'All'
+				let allCat = state.current === ALL ? state.all : state.all.filter((item) => {
+					if(item.status === status){
 						return item
 					}
 				});
@@ -144,10 +147,10 @@ export default function reducer ( state = initialState, action) {
 		}
 		case PREVIOUS:{
 			return produce(state, draft => {
-				let status = state.current == RECONCILLED ? 'Reconcilled' : state.current == UNRECONCILLED ? 'Un-reconcilled' :
-					state.current == PENDING ? 'Pending' : state.current == SETTLED ? 'Settled' : 'All'
-				let allCat = state.current == ALL ? state.all : state.all.filter((item) => {
-					if(item.status == status){
+				let status = state.current === RECONCILLED ? 'Reconcilled' : state.current == UNRECONCILLED ? 'Un-reconcilled' :
+					state.current === PENDING ? 'Pending' : state.current === SETTLED ? 'Settled' : 'All'
+				let allCat = state.current === ALL ? state.all : state.all.filter((item) => {
+					if(item.status === status){
 						return item
 					}
 				});
@@ -161,10 +164,10 @@ export default function reducer ( state = initialState, action) {
 		}
 		case GOTO:{
 			return produce(state, draft => {
-				let status = state.current == RECONCILLED ? 'Reconcilled' : state.current == UNRECONCILLED ? 'Un-reconcilled' :
-					state.current == PENDING ? 'Pending' : state.current == SETTLED ? 'Settled' : 'All'
-				let allCat = state.current == ALL ? state.all : state.all.filter((item) => {
-					if(item.status == status){
+				let status = state.current === RECONCILLED ? 'Reconcilled' : state.current === UNRECONCILLED ? 'Un-reconcilled' :
+					state.current === PENDING ? 'Pending' : state.current === SETTLED ? 'Settled' : 'All'
+				let allCat = state.current === ALL ? state.all : state.all.filter((item) => {
+					if(item.status === status){
 						return item
 					}
 				});
@@ -174,6 +177,18 @@ export default function reducer ( state = initialState, action) {
 				let end = start + 10 ;
 				draft.count = finNum;
 				draft.category = allCat.slice(start,end);
+			})
+		}
+		case LOAD:{
+			return produce(state, draft => {			
+				draft.loading = true;
+				draft.component = action.payload
+			})
+		}
+		case STOPLOAD:{
+			return produce(state, draft => {			
+				draft.loading = false;
+				draft.component = '';
 			})
 		}
 			default: 

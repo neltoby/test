@@ -5,13 +5,14 @@ import SmallGraphs from './SmallGraphs'
 
 const useStyles = makeStyles(theme => ({
     root: {
-        flexGrow: 1,
         display: 'flex',
+        width: '100%',
+        margin: '1rem 0',
         flexWrap: 'wrap',
-        margin: '2rem 0',
-        [theme.breakpoints.down('md')]: {
-            marginLeft: 0,
-            width: '100%',
+        [theme.breakpoints.up('md')]: {
+            flexGrow: 1,
+            
+            margin: '2rem 0',
             flexDirection: 'row',
             justifyContent: 'center',
             alignItem: 'center',
