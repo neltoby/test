@@ -20,22 +20,22 @@ export const dataJan2018 = [
 ];
 export const dataJul2018 = [
   {
-    name: 'Jan', uv: 3500, pv: 2400, amt: 2400,
+    name: 'Jul', uv: 3500, pv: 2400, amt: 2400,
   },
   {
-    name: 'Feb', uv: 6500, pv: 1398, amt: 2210,
+    name: 'Aug', uv: 6500, pv: 1398, amt: 2210,
   },
   {
-    name: 'Mar', uv: 3500, pv: 9800, amt: 2290,
+    name: 'Sep', uv: 3500, pv: 9800, amt: 2290,
   },
   {
-    name: 'Apr', uv: 2500, pv: 3908, amt: 2000,
+    name: 'Oct', uv: 2500, pv: 3908, amt: 2000,
   },
   {
-    name: 'May', uv: 3690, pv: 4800, amt: 2181,
+    name: 'Nov', uv: 3690, pv: 4800, amt: 2181,
   },
   {
-    name: 'Jun', uv: 5590, pv: 3800, amt: 2500,
+    name: 'Dec', uv: 5590, pv: 3800, amt: 2500,
   }
 ];
 export const dataJan2019 = [
@@ -60,22 +60,22 @@ export const dataJan2019 = [
 ];
 export const dataJul2019 = [
   {
-    name: 'Jan', uv: 2300, pv: 2400, amt: 2400,
+    name: 'Jul', uv: 2300, pv: 2400, amt: 2400,
   },
   {
-    name: 'Feb', uv: 6000, pv: 1398, amt: 2210,
+    name: 'Aug', uv: 6000, pv: 1398, amt: 2210,
   },
   {
-    name: 'Mar', uv: 5500, pv: 9800, amt: 2290,
+    name: 'Sep', uv: 5500, pv: 9800, amt: 2290,
   },
   {
-    name: 'Apr', uv: 4500, pv: 3908, amt: 2000,
+    name: 'Oct', uv: 4500, pv: 3908, amt: 2000,
   },
   {
-    name: 'May', uv: 4890, pv: 4800, amt: 2181,
+    name: 'Nov', uv: 4890, pv: 4800, amt: 2181,
   },
   {
-    name: 'Jun', uv: 3590, pv: 3800, amt: 2500,
+    name: 'Dec', uv: 3590, pv: 3800, amt: 2500,
   }
 ];
 export const smallDataJan2018 = [

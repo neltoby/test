@@ -59,9 +59,9 @@ const useStyles = makeStyles(theme => ({
         fontWeight: '500',
         marginTop: '1rem',
         [theme.breakpoints.down('md')]: {
-            width: '100%',
             textOverflow: 'ellipsis',
             fontSize: '0.7rem',
+            marginLeft: '3%',
         },
     },
     left: {
@@ -108,13 +108,13 @@ const MainGraph = () => {
                     <Grid container className={classes.container}>
                         <Grid item sm={8} xs={12} >
                             <Grid container className={classes.row}>
-                                <Grid item xs={5} className={classes.body}>
+                                <Grid item md={5} xs={12} className={classes.body}>
                                 <Typography variant="h6" className={classes.bodyBold}>
                                     {`Today: ${day}, ${mons[mon]} ${cyr}`}
                                 </Typography>
                                 </Grid>
-                                <Grid item container xs={7} className={classes.nbody}>
-                                    <Grid item xs={6} >
+                                <Grid item container md={7} xs={12} className={classes.nbody}>
+                                    <Grid item xs={6} className={classes.dateDiv}>
                                         <Typography variant="caption" className={classes.dateChecker}>
                                             {dateRange} {yr} <MdExpandMore />
                                         </Typography>

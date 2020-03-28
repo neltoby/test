@@ -5,13 +5,16 @@ const useStyles = makeStyles(theme => ({
     graphDetails: {
         height: '50%',
         paddingRight: '1rem',
-        paddingBottom: '1rem',
+        // paddingBottom: '1rem',
         '& p span':{
             marginLeft: '0.5rem',
         }
     },
     morePadding: {
-        paddingTop: '1rem',
+        paddingBottom: '1rem',
+        [theme.breakpoints.down('md')]: {
+            paddingBottom: '2rem',
+        }
     },
     title: {
         fontSize: '1.3rem',

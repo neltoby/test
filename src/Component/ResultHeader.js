@@ -19,7 +19,15 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1, 
         justifyContent: 'center',
         alignItems: 'center', 
-        marginTop: 0,    
+        marginTop: 0, 
+        [theme.breakpoints.down('md')]: {
+            marginLeft: '1px', 
+        }   
+    },
+    long: {
+        [theme.breakpoints.down('md')]: {
+            marginLeft: '1px', 
+        } 
     },
     formControl: {
         width: '80%',
@@ -38,7 +46,8 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'row',
         fontSize: '1.1rem',
         [theme.breakpoints.down('md')]: {
-            fontSize: '0.8rem',
+            fontSize: '1rem',
+            fontWeight: '500',
         }
     },
     dropdownShow: {
@@ -64,7 +73,7 @@ const useStyles = makeStyles(theme => ({
         marginLeft: theme.spacing(2),
         width: '90%',
         [theme.breakpoints.down('md')]: {
-            marginLeft: theme.spacing(0),
+            marginLeft: theme.spacing(1),
             fontSize: '0.7rem',
         },
       },
@@ -123,7 +132,7 @@ const ResultHeader = () => {
                 </Typography>
             </div>
             <Grid container item className={classes.root}>
-                <Grid item xs={4} className={classes.showing}>
+                <Grid item md={4} xs={12} className={classes.showing}>
                 Showing &nbsp;
                     <span className={classes.numIcon}>
                         {categoryLen}
@@ -135,7 +144,7 @@ const ResultHeader = () => {
                     </span> 
                     out of {allLen} payments
                 </Grid>
-                <Grid item xs={4}>                   
+                <Grid item md={4} xs={6}>                   
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                         <SearchIcon />
@@ -150,7 +159,7 @@ const ResultHeader = () => {
                         />
                     </div>
                 </Grid>
-                <Grid item xs={4} className={classes.show}>
+                <Grid item md={4} xs={6} className={classes.show}>
                 <div className={classes.dropdownShow}>Show </div>
                 <FormControl variant="outlined" className={classes.formControl}>
                     <InputLabel id="transaction">{al}</InputLabel>

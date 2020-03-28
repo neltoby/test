@@ -20,6 +20,10 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        border: '1px solid #ddd',
+    },
+    num: {
+        borderRight: '1px solid #ddd',
     },
     control: {
         padding: '0.5rem',
@@ -45,9 +49,10 @@ const useStyles = makeStyles(theme => ({
             display: 'block',
         }
     },
-    right: {
-        // text-align: right;
-        // padding-right: 3.5rem;
+    left: {
+        [theme.breakpoints.down('md')]: {
+            fontSize: '0.8rem'
+        }
     },
     rootSize: {
         paddingTop: '2rem',
@@ -73,18 +78,18 @@ const Footer = () => {
     const structure = total > 2 ? count === 1 ? <div className={classes.paginationContainer}>
               <div className={`${classes.num} ${classes.control}`} onClick={() => dispatch(goto(1))}>1</div>
               <div className={`${classes.num} ${classes.control}`} onClick={() => dispatch(goto(2))}>2</div>
-              <div className={`${classes.num} ${classes.control}`} onClick={() => dispatch(next())}>Next</div>
+              <div className={`${classes.end} ${classes.control}`} onClick={() => dispatch(next())}>Next</div>
               </div>: count === total ?
       <div className={classes.paginationContainer}>
-          <div className={`${classes.prev} ${classes.control}`} onClick={() => dispatch(prev())}>Prev</div>
+          <div className={`${classes.start} ${classes.control}`} onClick={() => dispatch(prev())}>Prev</div>
           <div className={`${classes.num} ${classes.control}`} onClick={() => dispatch(goto(1))}>1</div>
-          <div className={`${classes.num} ${classes.control}`}  onClick={() => dispatch(goto(2))}>2</div>
+          <div className={`${classes.end} ${classes.control}`}  onClick={() => dispatch(goto(2))}>2</div>
       </div> :
            <div className={classes.paginationContainer}>
-              <div className={`${classes.prev} ${classes.control}`} onClick={() => dispatch(prev())}>Prev</div>
+              <div className={`${classes.num} ${classes.control}`} onClick={() => dispatch(prev())}>Prev</div>
               <div className={`${classes.num} ${classes.control}`} onClick={() => dispatch(goto(1))}>1</div>
               <div className={`${classes.num} ${classes.control}`}  onClick={() => dispatch(goto(2))}>2</div>
-              <div className={`${classes.next} ${classes.control}`} onClick={() => dispatch(next())}>Next</div>
+              <div className={`${classes.end} ${classes.control}`} onClick={() => dispatch(next())}>Next</div>
            </div>:
       total === 2 ? count === 1 ?
           <div className={classes.paginationContainer}>
@@ -92,7 +97,7 @@ const Footer = () => {
           </div> :
           <div className={classes.paginationContainer}>
                  <div className={`${classes.num} ${classes.control}`} onClick={() => dispatch(prev())}>Prev</div>
-                 <div className={`${classes.num} ${classes.control}`} onClick={() => dispatch(next())}>Next</div>
+                 <div className={`${classes.end} ${classes.control}`} onClick={() => dispatch(next())}>Next</div>
             </div> :  '';
         const overlay = store.side ? <Overlay><Side overlay={true} /></Overlay> : '';
     return (
