@@ -104,10 +104,10 @@ const Footer = () => {
                     </div>                                     
                 </Grid>
                 <Grid item container md={9} xs={12} className={classes.rootSize}> 
-                    <Grid xs={6} className={classes.left}> 
+                    <Grid item xs={6} className={classes.left}> 
                         {text}
                     </Grid>
-                    <Grid xs={6} className={classes.right}>
+                    <Grid item xs={6} className={classes.right}>
                         {structure}                  
                     </Grid>
                 </Grid>

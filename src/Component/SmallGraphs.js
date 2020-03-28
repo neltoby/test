@@ -1,12 +1,12 @@
 import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import {
-    AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+    AreaChart, Area, ResponsiveContainer,
   } from 'recharts';
-import {useSelector, useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
 // import { increase, decrease} from '../actions'
 
 const useStyles = makeStyles(theme => ({
@@ -56,14 +56,13 @@ const useStyles = makeStyles(theme => ({
 
 const SmallGraphs = (props) => {
     const classes = useStyles();
-    const theme = useTheme();
     const store = useSelector(state => state);
     const smallData = store.currentData.alldata.smallData;
     return (
         <Card className={classes.root}>
             <div className={classes.details}>
                 <CardContent className={classes.content}>
-                <Typography component="body2" color="textSecondary" className={classes.body}>
+                <Typography variant="body2" color="textSecondary" className={classes.body}>
                     {props.item.text}
                 </Typography>
                 <Typography variant="subtitle1" className={classes.bodyBold}>

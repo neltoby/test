@@ -30,15 +30,6 @@ export default function TransitionsModal() {
     const classes = useStyles();
     const store = useSelector(state => state);
     const opens = store.loading
-    console.log(opens)
-
-//   const handleOpen = () => {
-//     setOpen(true);
-//   };
-
-//   const handleClose = () => {
-//     setOpen(false);
-//   };
 
   return (
       <Modal

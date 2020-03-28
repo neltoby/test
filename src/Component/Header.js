@@ -120,6 +120,9 @@ const useStyles = makeStyles(theme => ({
       display: 'none',
     },
   },
+  moreOption: {
+    color: '#ddd',
+  }
 }));
 
 export default function Header() {
@@ -275,7 +278,7 @@ export default function Header() {
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color="#ddd"
+              className={classes.moreOption}
             >
               <MoreIcon />
             </IconButton>

@@ -109,7 +109,7 @@ const Side = (props) => {
                 if(item.icon){
                     return (
                         <>
-                        <ListItem button key={i} className={classes.hover}>
+                        <ListItem button key={`${i}${item.text}`} className={classes.hover}>
                             <ListItemIcon>
                                 {item.icon}
                             </ListItemIcon>
@@ -119,7 +119,7 @@ const Side = (props) => {
                     )
                 }else{
                     return (
-                        <ListItem button className={classes.noHover}>
+                        <ListItem button key={`${i}${item.text}`} className={classes.noHover}>
                             <ListItemText primary={item.text} />
                         </ListItem>
                     )
@@ -131,7 +131,7 @@ const Side = (props) => {
                 if(item.icon){
                     return (
                         <>
-                        <ListItem button key={i} className={classes.hover}>
+                        <ListItem button key={`${i}${item.text}`} className={classes.hover}>
                             <ListItemIcon>
                                 {item.icon}
                             </ListItemIcon>
@@ -141,7 +141,7 @@ const Side = (props) => {
                     )
                 }else{
                     return (
-                        <ListItem button className={classes.noHover}>
+                        <ListItem button key={`${i}${item.text}`} className={classes.noHover}>
                             <ListItemText primary={item.text} />
                         </ListItem>
                     )
@@ -153,7 +153,7 @@ const Side = (props) => {
                 if(item.icon){
                     return (
                         <>
-                        <ListItem button key={i} className={classes.hover}>
+                        <ListItem button key={`${i}${item.text}`} className={classes.hover}>
                             <ListItemIcon>
                                 {item.icon}
                             </ListItemIcon>
@@ -163,7 +163,7 @@ const Side = (props) => {
                     )
                 }else{
                     return (
-                        <ListItem button className={classes.noHover}>
+                        <ListItem button key={`${i}${item.text}`} className={classes.noHover}>
                             <ListItemText primary={item.text} />
                         </ListItem>
                     )

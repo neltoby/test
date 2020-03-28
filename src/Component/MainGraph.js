@@ -10,7 +10,7 @@ import {
   import { FiChevronRight } from 'react-icons/fi'
   import { FiChevronLeft } from 'react-icons/fi'
   import {useSelector, useDispatch} from "react-redux";
-import { increase, decrease} from '../actions'
+import { increase} from '../actions'
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import GraphDetail from './GraphDetail'
@@ -158,7 +158,7 @@ const MainGraph = () => {
                         </Grid>
                         <Grid item sm={4} xs={12} className={classes.graphDetails}>
                             {graphInfo.map((item,i) => {
-                                if(i == 0){
+                                if(i === 0){
                                     return <><GraphDetail item={item} key={i} classname={true} /><Divider /></>
                                 }else{
                                     return <GraphDetail item={item} key={i} />

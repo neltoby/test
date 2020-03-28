@@ -13,7 +13,6 @@ import Button from '@material-ui/core/Button';
 import { IconContext } from 'react-icons'
 import { MdExpandMore } from 'react-icons/md'
 import { GoPrimitiveDot } from 'react-icons/go'
-import NoResultFound from './NoResultFound'
 
 const StyledTableCell = withStyles(theme => ({
     head: {
@@ -60,6 +59,11 @@ const useStyles = makeStyles(theme => ({
             width: '100%',
             fontSize: '0.7rem',
         },
+    },
+    tableCell: {
+        [theme.breakpoints.down('md')]: {
+            fontSize: '0.85rem',
+        }
     }
 }));
 
@@ -85,17 +89,23 @@ export default function CustomizedTables() {
                 const color = row.status === 'Reconcilled' ? '#00b33c' : row.status === 'Pending' ? 
                 '#e6e600' : '#e0e0d1' ;
                 return(
-                <StyledTableRow key={row.name}>
-                    <StyledTableCell component="th" scope="row">
+                <StyledTableRow key={i}>
+                    <StyledTableCell component="th" scope="row" className={classes.tableCell}>
                         <span className={classes.row}>
                             <Avatar className={classes.name}>vw</Avatar>{row.type}
                         </span>
                     
                     </StyledTableCell>
-                    <StyledTableCell align="right">{row.price}</StyledTableCell>
-                    <StyledTableCell align="right">{row.id}</StyledTableCell>
-                    <StyledTableCell align="right">{row.time}</StyledTableCell>
-                    <StyledTableCell align="right">
+                    <StyledTableCell align="right"  className={classes.tableCell}>
+                        {row.price}
+                    </StyledTableCell>
+                    <StyledTableCell align="right" className={classes.tableCell}>
+                        {row.id}
+                    </StyledTableCell>
+                    <StyledTableCell align="right" className={classes.tableCell}>
+                        {row.time}
+                    </StyledTableCell>
+                    <StyledTableCell align="right" className={classes.tableCell}>
                         <IconContext.Provider value={{ className: 'but-icon', size: '1em', color: color }}>
                             <Button                           
                                 className={classes.status}
@@ -107,14 +117,18 @@ export default function CustomizedTables() {
                         </IconContext.Provider>
                         
                     </StyledTableCell>
-                    <StyledTableCell align="right">
+                    <StyledTableCell align="right"  className={classes.tableCell}>
                         <IconContext.Provider value={{  size: '2em', color: '#aaa' }}>
                             <MdExpandMore />
                         </IconContext.Provider>
                     </StyledTableCell>
                 </StyledTableRow>
                 )
-            }) : <NoResultFound />}
+            }) : <StyledTableRow>
+                    <StyledTableCell component="th" scope="row">
+                        <h5>No result for {store.current} payment </h5>              
+                    </StyledTableCell>
+                </StyledTableRow>}
                 
             </TableBody>
         </Table>
